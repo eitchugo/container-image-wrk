@@ -25,11 +25,12 @@ COPY --from=builder /root/wrk-4.1.0/wrk /usr/local/bin/
 # run as a normal user please
 RUN addgroup -S wrk
 RUN adduser -S wrk -G wrk
+RUN mkdir -p /home/wrk && chown wrk:wrk /home/wrk
 USER wrk
 ENV PATH="/home/wrk/bin:/home/wrk/.local/bin:/usr/local/bin:${PATH}"
 
 # sample wrk scripts
-COPY --from=builder /root/wrk-4.1.0/scripts /home/wrk/sample-scripts
+COPY --chown=wrk:wrk --from=builder /root/wrk-4.1.0/scripts /home/wrk/sample-scripts
 
 WORKDIR /home/wrk
 CMD ["wrk"]
