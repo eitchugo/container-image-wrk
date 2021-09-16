@@ -18,7 +18,7 @@ docker run --rm eitch/wrl
 podman run --rm eitch/wrk
 
 # run a benchmark with some script in current dir
-podman run --rm -v $(pwd):/home/wrk eitch/wrk -s script.lua https://www.example.com
+podman run --rm -v $(pwd):/home/wrk/scripts:Z eitch/wrk -s scripts/script.lua https://www.example.com
 ```
 
 ## Other information and thanks
